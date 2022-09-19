@@ -1,0 +1,29 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - "*/**"
+      - "*"
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: 0.0.1
+      DOCKER_REPO: stephenwike
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Docker Login
+        run: ./ci/docker-login.ps1
+        shell: pwsh
+      - name: Build
+        run: ./ci/build.ps1
+        shell: pwsh
+      - name: Publish
+        run: ./ci/publish.ps1
+        shell: pwsh
