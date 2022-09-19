@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VERSION: 0.0.1
+      DOCKER_REPO: stephenwike
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
