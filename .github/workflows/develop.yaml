@@ -12,6 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Docker Login
+        run: ./ci/docker-login.ps1
+        shell: pwsh
       - name: Build
         run: ./ci/build.ps1
         shell: pwsh
